@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  web-server:
+    image: nginx:latest
+    ports:
+      - 80:80
+    container_name: web-server
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  db:
+    image: mariadb:latest
+    restart: always
+    container_name: mariadb_test
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_DATABASE: testdb
+      MYSQL_ROOT_PASSWORD: root
