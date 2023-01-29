@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class CookieUtils {
-
-    public ResponseCookie createCookie(String cookieName, String value) {
+    private CookieUtils(){}
+    public static ResponseCookie createCookie(String cookieName, String value) {
         return ResponseCookie.from(cookieName, value)
                 .path("/")
                 .secure(true)
@@ -20,7 +20,7 @@ public class CookieUtils {
                 .build();
     }
 
-    public Cookie getCookie(HttpServletRequest request, String cookieName){
+    public static Cookie getCookie(HttpServletRequest request, String cookieName){
         if(request.getCookies().length == 0){
             return null;
         } else {
@@ -34,7 +34,7 @@ public class CookieUtils {
         return null;
     }
 
-    public boolean deleteCookie(HttpServletRequest request, HttpServletResponse response, String cookieName){
+    public static boolean deleteCookie(HttpServletRequest request, HttpServletResponse response, String cookieName){
         Cookie cookie = getCookie(request, cookieName);
         if(cookie != null){
             Cookie myCookie = new Cookie(cookieName, null);

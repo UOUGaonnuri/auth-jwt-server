@@ -10,7 +10,7 @@ import java.time.Duration;
 @Service
 @RequiredArgsConstructor
 public class RedisUtils {
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
     public String getData(String key){
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();

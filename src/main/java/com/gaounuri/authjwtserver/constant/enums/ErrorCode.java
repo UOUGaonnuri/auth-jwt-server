@@ -24,7 +24,7 @@ public enum ErrorCode {
     REFRESH_TOKEN_EXPIRED(HttpStatus.FORBIDDEN, "리프레쉬 토큰이 만료되었습니다."),
 
     //CONFLICT
-    DUPLICATE_EMAIL(HttpStatus.CONFLICT, "이미 존재하는 계정 이메일입니다."),
+    DUPLICATE_USER(HttpStatus.CONFLICT, "이미 해당 유저가 존재합니다."),
 
     //INTERNAL SERVER ERROR
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,  "내부 서버 오류입니다. 관리자에게 문의하세요");

@@ -1,19 +1,18 @@
 package com.gaounuri.authjwtserver.user.model;
 
-import com.gaounuri.authjwtserver.constant.entity.BaseEntity;
+import com.gaounuri.authjwtserver.constant.entity.BaseTimeEntity;
 import com.gaounuri.authjwtserver.user.enums.Role;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "test_user_jwt")
+@Table(name = "test_user")
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class TestUser extends BaseEntity {
+public class TestUser extends BaseTimeEntity {
 
     @Id
     @Column(name = "user_id")

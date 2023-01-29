@@ -17,9 +17,8 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class JwtUtils {
-
-    private UserDetailsServiceImpl userDetailsService;
+public final class JwtUtils {
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${jwt.security.key}")
     private String SECRET_KEY;
@@ -59,7 +58,7 @@ public class JwtUtils {
     }
 
     public String getUserEmail(String token){
-        return extractAllClaims(token).get("uerEmail", String.class);
+        return extractAllClaims(token).get("userEmail", String.class);
     }
 
     public String resolveToken(HttpServletRequest request){
