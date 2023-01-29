@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface TestUserRepository extends JpaRepository<TestUser, Long> {
-    Optional<TestUser> findTestUserByUserName(String username);
+    Optional<TestUser> findTestUserByUserEmail(String userEmail);
+    Boolean existsTestUserByUserNameOrUserEmail(String userName, String userEmail);
 }
