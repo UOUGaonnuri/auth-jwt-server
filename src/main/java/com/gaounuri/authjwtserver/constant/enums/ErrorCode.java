@@ -18,6 +18,7 @@ public enum ErrorCode {
 
     //NOT_FOUND
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 유저의 정보를 찾을 수 없습니다."),
+    TODO_NOT_FOUND(HttpStatus.NOT_FOUND, "해당하는 TODO를 찾을 수 없습니다."),
 
     //FORBIDDEN
     FORBIDDEN(HttpStatus.FORBIDDEN,  "금지된 요청입니다."),
