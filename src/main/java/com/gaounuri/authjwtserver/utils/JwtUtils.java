@@ -4,6 +4,8 @@ import com.gaounuri.authjwtserver.user.service.UserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +19,7 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public final class JwtUtils {
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -26,7 +29,7 @@ public final class JwtUtils {
     private SignatureAlgorithm SIGNATURE_ALG = SignatureAlgorithm.HS256;
 
     public static final String REFRESH_TOKEN_NAME = "refresh_token";
-    public static final Long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L;
+    public static final Long ACCESS_TOKEN_VALID_TIME = 5 * 60 * 1000L;
     public static final Long REFRESH_TOKEN_VALID_TIME = 30 * 24 * 60 * 60 * 100L;
 
     public Key getSigningkey(String secretKey){
@@ -49,6 +52,7 @@ public final class JwtUtils {
     public String createToken(String userEmail, Long validTime) {
         Claims claims = Jwts.claims().setSubject(userEmail);
         claims.put("userEmail", userEmail);
+        log.info("Expiration " +  new Date(System.currentTimeMillis() + validTime));
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
