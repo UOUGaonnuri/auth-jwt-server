@@ -19,7 +19,6 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public final class JwtUtils {
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -52,7 +51,6 @@ public final class JwtUtils {
     public String createToken(String userEmail, Long validTime) {
         Claims claims = Jwts.claims().setSubject(userEmail);
         claims.put("userEmail", userEmail);
-        log.info("Expiration " +  new Date(System.currentTimeMillis() + validTime));
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
