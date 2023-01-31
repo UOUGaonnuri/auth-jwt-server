@@ -4,6 +4,8 @@ import com.gaounuri.authjwtserver.user.service.UserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,7 +28,7 @@ public final class JwtUtils {
     private SignatureAlgorithm SIGNATURE_ALG = SignatureAlgorithm.HS256;
 
     public static final String REFRESH_TOKEN_NAME = "refresh_token";
-    public static final Long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L;
+    public static final Long ACCESS_TOKEN_VALID_TIME = 5 * 60 * 1000L;
     public static final Long REFRESH_TOKEN_VALID_TIME = 30 * 24 * 60 * 60 * 100L;
 
     public Key getSigningkey(String secretKey){

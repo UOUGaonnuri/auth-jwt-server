@@ -21,9 +21,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getServletPath();
         String token = jwtUtils.resolveToken(request);
-        if(!path.startsWith("/api/auth/v1/reissue") && token.equals("") && jwtUtils.validateToken(token)){
+        if(!path.startsWith("/api/auth/v1/reissue") && token != null && jwtUtils.validateToken(token)){
             String isLogout = redisUtils.getData(token);
-            if(isLogout.isEmpty()){
+            if(isLogout == null){
                 Authentication authentication = jwtUtils.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }

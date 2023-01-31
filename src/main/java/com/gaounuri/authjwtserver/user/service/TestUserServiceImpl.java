@@ -56,11 +56,11 @@ public class TestUserServiceImpl implements TestUserService {
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         String accessToken = jwtUtils.createToken(user.getUserEmail(), JwtUtils.ACCESS_TOKEN_VALID_TIME);
-        String refreshToken = redisUtils.getData("RT:"+authentication.getName());
+        String refreshToken = redisUtils.getData("RT:"+user.getUserEmail());
 
         if(refreshToken == null) {
             refreshToken = jwtUtils.createToken(user.getUserEmail(), JwtUtils.REFRESH_TOKEN_VALID_TIME);
-            redisUtils.setDataExpire("RT:" + authentication.getName(), refreshToken, JwtUtils.REFRESH_TOKEN_VALID_TIME);
+            redisUtils.setDataExpire("RT:" + user.getUserEmail(), refreshToken, JwtUtils.REFRESH_TOKEN_VALID_TIME);
         }
 
         return TestUserDTO.LoginRes.builder()
