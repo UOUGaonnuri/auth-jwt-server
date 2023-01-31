@@ -6,26 +6,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Data
-@Builder
 @RequiredArgsConstructor(staticName = "of")
 public class BaseResponse<T> {
     private final HttpStatus status;
     private final T data;
     private final String message;
 
-    public static BaseResponse<Object> success(Object resultData) {
-        return BaseResponse.builder()
-                .status(HttpStatus.OK)
-                .data(resultData)
-                .message("SUCCESS")
-                .build();
+    public static <T> BaseResponse<T> success(T resultData) {
+        return new BaseResponse<>(HttpStatus.OK, resultData, "SUCCESS");
     }
 
-    public static BaseResponse<Object> fail(HttpStatus status, String errorMsg){
-        return BaseResponse.builder()
-                .status(status)
-                .data(errorMsg)
-                .message("ERROR")
-                .build();
+    public static BaseResponse<String> fail(HttpStatus status, String errorMsg){
+        return new BaseResponse<>(status, errorMsg, "FAIL");
     }
 }
