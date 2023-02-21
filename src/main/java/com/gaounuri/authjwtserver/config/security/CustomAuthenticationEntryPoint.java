@@ -17,7 +17,7 @@ import java.io.IOException;
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    private BaseResponse<String> expiredExceptionResponse =
+    private final BaseResponse<String> expiredExceptionResponse =
             BaseResponse.fail(ErrorCode.EXPIRED_TOKEN.getHttpStatus(), ErrorCode.EXPIRED_TOKEN.getMessage());
 
     @Override
